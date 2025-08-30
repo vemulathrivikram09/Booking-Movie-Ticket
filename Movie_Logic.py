@@ -1,0 +1,43 @@
+movies = {"Avengers": 250, "Inception": 200, "Coco": 150}
+
+def display_movies():
+    print("\nWelcome to Python Cinema\n")
+    print("Available Movies:")
+    i = 1
+    for movie, price in movies.items():
+        print(f"{i}. {movie} - ₹{price}")
+        i += 1
+
+def select_movie():
+    movie = input("Enter movie name: ")
+    if movie not in movies:
+        print(f"Sorry, '{movie}' is not available. Please choose a valid movie.")
+        return None
+    return movie
+
+def calculate_total(movie, tickets):
+    price = movies[movie]
+    total = price * tickets
+    discount = 0
+    discount_text = "0"
+
+    if total >= 1000:
+        discount = total * 0.2
+        discount_text = f"{int(discount)} (20% off)"
+    elif tickets >= 5:
+        discount = total * 0.1
+        discount_text = f"{int(discount)} (10% off)"
+
+    final_amount = total - discount
+    return total, discount_text, final_amount
+
+def print_ticket(movie, tickets, total, discount_text, final):
+    print("\n----- Ticket Receipt -----")
+    print(f"Movie: {movie}")
+    print(f"Tickets: {tickets}")
+    print(f"Price per ticket: ₹{movies[movie]}")
+    print(f"Total before discount: ₹{total}")
+    print(f"Discount applied: ₹{discount_text}")
+    print(f"Final Amount Payable: ₹{int(final)}")
+    print("--------------------------")
+    print("\nBooking Confirmed! Enjoy your movie!")
